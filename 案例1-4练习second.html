@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>这是title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        #menu {
+            border:1px solid #000000;
+            width: 200px;
+            /*color: white;*/
+        }
+        #menu h3{
+            height: 40px;
+            background: #cccccc;
+            color: #ffffff;;
+            line-height: 40px;
+            cursor: pointer;
+            /*background: #000000;*/
+            /*color: white;*/
+        }
+        #menu .submenu{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+<ul id="menu">
+    <li>
+        <h3 class="mainmenu"><a href="#">管理区</a></h3>
+        <ul class="submenu">
+            <li><a href="">001</a></li>
+            <li><a href="">002</a></li>
+            <li><a href="">003</a></li>
+        </ul>
+    </li>
+    <li>
+        <h3 class="mainmenu"><a href="#">菜单区</a></h3>
+        <ul class="submenu">
+            <li><a href=">001</a></li>
+         <li><a href=">001</a></li>
+            <li><a href="">003</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    var oMenu = document.getElementById("menu");
+    var aH3 = oMenu.getElementsByTagName("h3");
+    var aSubmenu = oMenu.getElementsByTagName("ul");
+    for(var i = 0; i<aH3.length;i++){
+        aH3[i].index = i;
+        aH3[i].flag = 0;//如果当前标志位是0表示当前打开状态，非0表示当前关闭状态
+        aH3[i].onclick = function(){
+            if(this.flag){
+                aSubmenu[this.index].style.display = "none";
+                this.flag = false;
+            }else {
+                aSubmenu[this.index].style.display = "block";
+                this.flag = true;
+            }
+
+//            console.log(this.index);
+        }
+
+    }
+</script>
+</body>
+</html>
