@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>这是title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        a{
+            text-decoration:none;
+        }
+        #menu li{
+            width: 120px;
+            margin-right: 1px;
+        }
+        #menu .mainmenu{
+            background: #cccccc;
+            color:red;
+            display: block;
+            float:left;
+            align:center;
+            cursor: pointer;
+        }
+        #menu .submenu{
+            background: #ffffff;
+            display:none;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<ul id="menu">
+    <li class="mainmenu">
+        <a href="#">link 1</a>
+        <ul class="submenu">
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 2</a></li>
+            <li><a href="#">link 3</a></li>
+        </ul>
+    </li>
+    <li class="mainmenu">
+        <a href="#">link 2</a>
+        <ul class="submenu">
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 2</a></li>
+            <li><a href="#">link 3</a></li>
+        </ul>
+    </li>
+    <li class="mainmenu">
+        <a href="#">link 3</a>
+        <ul class="submenu">
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 2</a></li>
+            <li><a href="#">link 3</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    var oMenu = document.getElementById("menu");
+    var aMainmenu = oMenu.getElementsByClassName("mainmenu");
+    var aSubmenu = oMenu.getElementsByClassName("submenu");
+    for(var i=0;i<aMainmenu.length;i++) {
+        aMainmenu[i].index = i;
+        aMainmenu[i].onmouseover = function () {
+            aSubmenu[this.index].style.display = "block";
+
+        }
+        aMainmenu[i].onmouseout = function () {
+            aSubmenu[this.index].style.display = "none";
+
+        }
+
+    }
+
+</script>
+</body>
+</html>
