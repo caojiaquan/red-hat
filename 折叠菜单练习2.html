@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        #menu h3{
+            cursor:pointer;
+            background: #000000;
+        }
+        #menu .mainmenu{
+            background: #ccc;
+            width: 120px;
+            float:left;
+            margin-right: 1px;
+            color: #f00;
+        }
+        #menu .submenu{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<ul id="menu">
+    <li class="mainmenu">
+        <h3>菜单区</h3>
+        <ul class="submenu">
+            <li><a href="">link 1</a></li>
+            <li><a href="">link 2</a></li>
+            <li><a href="">link 3</a></li>
+        </ul>
+    </li>
+    <li class="mainmenu">
+        <h3>管理区</h3>
+        <ul class="submenu">
+            <li><a href="">link 1</a></li>
+            <li><a href="">link 2</a></li>
+            <li><a href="">link 3</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    var oMenu =document.getElementById("menu");
+    var aH3 = oMenu.getElementsByTagName("h3");
+    var aUl = oMenu.getElementsByTagName("ul");
+    for(var i=0 ; i<aH3.length; i++){
+        aH3[i].index = i;
+        aH3[i].bFlag;
+        aH3[i].onclick = function(){
+            if(this.bFlag){
+                aUl[this.index].style.display = "block";
+
+            }else{
+                aUl[this.index].style.display = "none";
+
+            }
+            this.bFlag = !this.bFlag;
+//            aUl[this.index].style.display = "block";
+        }
+    }
+</script>
+</body>
+</html>
