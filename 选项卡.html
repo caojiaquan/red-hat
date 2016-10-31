@@ -57,9 +57,11 @@
     var oArry = [11111111,2222222,3333333];
     var oMenu = document.getElementById("menu");
     var aLi = document.getElementsByTagName("li");
+    var oDiv1 = document.getElementById("div1");
     for(var i = 0; i<aLi.length; i++){
         aLi[i].index = i;
         aLi[i].onclick = function(){
+            oDiv1.innerHTML = oArry[this.index];
 //            document.write(this.index = innerHTML)
             for(var i =0; i<aLi.length; i++)//问：怎么把俩个for循环放到一个里边，进行优化
             if(aLi[i].className = "selected"){
@@ -67,6 +69,8 @@
             }
 //            aLi[i].className//问：把这里所有的li的classNamr都给清空怎么做
             this.className = "selected";
+
+
         }
     }
 </script>
