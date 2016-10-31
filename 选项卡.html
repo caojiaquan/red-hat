@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding :0;
+        }
+        ul {
+            list-style: none;
+            height: 50px;
+
+        }
+        a{
+            text-decoration:none;
+        }
+        #menu li{
+            float:left;
+            background: #cccccc;
+            margin-right:5px;
+            width: 100px;
+            height: 50px;
+            text-align:center;
+            line-height: 50px;
+            cursor:pointer;
+        }
+        #div1{
+            background: #cccccc;
+            width: 400px;
+            height: 171px;
+            border-top:1px solid #000;
+        }
+        #container{
+            /*background: #ff0000;*/
+            width: 400px;
+            margin:50px auto;
+        }
+        #menu .selected{
+            background: #000000;
+            color: #ffffff;
+        }
+
+    </style>
+</head>
+<body>
+<div id="container">
+<ul id="menu">
+    <li class="selected">js</li>
+    <li>html</li>
+    <li>css</li>
+</ul>
+<div id="div1"></div>
+</div>
+<script>
+    var oArry = [11111111,2222222,3333333];
+    var oMenu = document.getElementById("menu");
+    var aLi = document.getElementsByTagName("li");
+    for(var i = 0; i<aLi.length; i++){
+        aLi[i].index = i;
+        aLi[i].onclick = function(){
+//            document.write(this.index = innerHTML)
+            for(var i =0; i<aLi.length; i++)//问：怎么把俩个for循环放到一个里边，进行优化
+            if(aLi[i].className = "selected"){
+                aLi[i].className = "";
+            }
+//            aLi[i].className//问：把这里所有的li的classNamr都给清空怎么做
+            this.className = "selected";
+        }
+    }
+</script>
+</body>
+</html>
