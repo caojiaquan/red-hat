@@ -116,16 +116,18 @@
             aLi[elem].className = "selected";
             aImg[elem].className = "selected";
         }
-        var timer = setInterval(function(){
-            oNext.onclick();
-        },2000)
+        var timer;
+         function run(){
+              timer =  setInterval(function(){
+                 oNext.onclick();
+             },2000)
+         }
+        run();
         oContainer.onmouseover = function(){
             clearInterval(timer);
         }
         oContainer.onmouseout = function(){
-            timer = setInterval(function(){
-                oNext.onclick();
-            },2000)
+            run();
         }
 
 
