@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 200px;
+            height: 100px;
+            background: #ff0000;
+            position:absolute;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+    <button id="div1" >点我</button>
+    <div id="btn">aaaa</div>
+    <script>
+        var oDiv1 = document.getElementById("div1");
+        var oBun = document.getElementById("btn");
+        oDiv1.style.left = "200px";
+        oBun.onclick = function(){
+            setInterval(function(){
+                oDiv1.style.left = oDiv1.offsetLeft + 10 + "px";
+            },500)
+        }
+    </script>
+</body>
+</html>
