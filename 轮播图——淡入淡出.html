@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            list-style: none;
+
+        }
+        a{
+            text-decoration:none;
+        }
+        #container{
+            width: 680px;
+            height: 344px;
+            position:relative;
+            margin: 50px auto;
+        }
+        #nav li,#arrow span{
+            float:left;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            color:#fff;
+            margin:10px;
+            text-align:center;
+            line-height: 20px;
+            cursor:pointer;
+            /*z-index: 9999;;*/
+        }
+        /*content{*/
+        /*position:absolute;*/
+        /*}*/
+        #nav{
+            position: absolute;
+            bottom: 30px;
+            right:30px;
+            z-index: 9999;
+        }
+        #arrow{
+            position: absolute;
+            left:30px;
+            bottom:30px;
+            z-index: 9999;
+        }
+        #content img{
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        content{
+            position:relative;
+        }
+        #nav .selected{
+            background:orange;
+        }
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul id="nav">
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div id="content">
+        <img src="img/1.jpg" alt=""/>
+        <img src="img/2.jpg" alt=""/>
+        <img src="img/3.jpg" alt=""/>
+        <img src="img/4.jpg" alt=""/>
+    </div>
+    <div id="arrow">
+        <span id="prev">&lt;</span>
+        <span id="next">&gt;</span>
+    </div>
+
+</div>
+<script src="jslib.js"></script>
+<script>
+    var oNav = document.getElementById("nav");
+    var aLi = oNav.getElementsByTagName("li");
+    var oContent = document.getElementById("content");
+    var aImg = oContent.getElementsByTagName("img");
+    var oPrev = document.getElementById("prev");
+    var oNext = document.getElementById("next");
+    var oContainer =document.getElementById("container");
+    var zIndex = 4;
+    var iNow = 0;
+    for(var i = 0;i<aLi.length; i++){
+        aLi[i].index = i;
+        aImg[i].style.zIndex = aImg.length - i;
+        aLi[i].onmouseover = function() {
+            iNow = this.index;
+            changeImg(this.index);
+        }
+    }
+    oPrev.onclick = function(){
+        iNow--;
+        if(iNow == -1){
+            iNow = 3;
+        }
+        changeImg(iNow);
+    }
+
+    oNext.onclick = function(){
+        iNow++;
+        if(iNow ==4){
+            iNow = 0;
+        }
+        changeImg(iNow);
+    }
+    function changeImg(iNow){
+        for(var i=0; i<aLi.length; i++){
+            aLi[i].className = "";
+        }
+        aLi[iNow].className ="selected";
+        aImg[iNow].style.opacity = 0;
+        aImg[iNow].style.filter = "alpha(opacity=0)";
+        aImg[iNow].style.zIndex = ++zIndex;
+        animate(aImg[iNow], {opacity:100});
+    }
+     var timer;
+    run();
+    function run(){
+        timer = setInterval(function () {
+            oNext.onclick();
+        }, 2000);
+    }
+    oContainer.onmouseover = function(){
+        clearInterval(timer)
+    }
+    oContainer.onmouseout = function() {
+       run();
+    };
+
+
+
+</script>
+</body>
+</html>
