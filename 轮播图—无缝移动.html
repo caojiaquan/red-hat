@@ -83,62 +83,67 @@
         <span id="next">&gt;</span>
     </div>
 </div>
-
 <script src="jslib.js"></script>
 <script>
+    var oContainer = document.getElementById("container");
     var oTab = document.getElementById("tab");
     var aLi = oTab.getElementsByTagName("li");
     var oContent = document.getElementById("content");
     var aImg = oContent.getElementsByTagName("img");
-    var oPrev = document.getElementById("prev");
     var oNext = document.getElementById("next");
+    var oPrev = document.getElementById("prev");
     var iNow = 0;
-    var oContainer = document.getElementById("container");
-//    oContent.innerHTML += oContent.innerHTML;
-//    oContent.style.width = oContent.offsetWidth*2 +"px";
+    var newNode = aImg[0].cloneNode();
+
+    oContent.style.width = aImg[0].offsetWidth * 5 + "px";
+    oContent.appendChild(newNode);
     for(var i=0; i<aLi.length; i++){
         aLi[i].index = i;
         aLi[i].onmouseover = function(){
-           changeImg(this.index);
+            changeImg(this.index);
             iNow = this.index;
         }
-        oPrev.onclick = function(){
-            iNow--;
-            if(iNow == -1){
-                iNow = 3;
+        oPrev.onclick = oNext.onclick = function(){
+            if(this == oPrev){
+                iNow--;
+                if(iNow == -1){
+                    iNow = 3;
+                    oContent.style.left = -aImg[0].offsetWidth*4 +"px";
+                }
+                changeImg(iNow);
+            }else{
+                iNow++;
+                if(iNow == 5){
+                    iNow=1;
+                    oContent.style.left = 0;
+                }
+                changeImg(iNow);
             }
-            changeImg(iNow);
         }
-        oNext.onclick = function(){
-            iNow++;
-            if(iNow == 4){
-                iNow = 0;
-            }
-            changeImg(iNow);
-        }
+    }
+    var timer;
+    run();
+    function run(){
+        timer = setInterval(function () {
+            oNext.onclick();
+        }, 1000);
+    }
+    oContainer.onmouseover = function(){
+        clearInterval(timer);
+    };
+    oContainer.onmouseout = function(){
+         run();
     }
     function changeImg(iNow){
         for(var i=0; i<aLi.length; i++){
             aLi[i].className = "";
         }
-        aLi[iNow].className = "selected";
-        animate( oContent,{left: -oContainer.offsetWidth*iNow});
+        console.log(iNow);
+        aLi[iNow>=4? 0:iNow ].className = "selected";
+        animate(oContent,{
+            left: -aImg[0].offsetWidth * iNow
+        });
     }
-    var timer;
-    run();
-    function run() {
-        timer = setInterval(function () {
-            oNext.onclick();
-        }, 2000);
-    }
-    oContainer.onmouseover = function(){
-        clearInterval(timer);
-    }
-    oContainer.onmouseout = function(){
-        run();
-    }
-
-
 </script>
 </body>
 </html>
