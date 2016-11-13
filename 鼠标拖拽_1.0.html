@@ -22,14 +22,32 @@
         var oDiv = document.getElementById("div");
         oDiv.onmousedown = function(e){
             e = e || window.event;
-            iDisX = e.clientLeft - oDiv.offsetLeft;
-            iDisY = e.clientTop - oDiv.offsetTop;
-            document.onmousemove = function(){
+            console.log(e.clientX)
+            iDisX = e.clientX - oDiv.offsetLeft;
+            iDisY = e.clientY - oDiv.offsetTop;
+            document.onmousemove = function(e){
                 e = e || window.event;
-                oDiv.style.left = e.clientX - iDisX;
-                oDiv.style.top = e.clientY - iDisY;
+               iLeft = e.clientX - iDisX;
+                iTop = e.clientY - iDisY;
+                if(iLeft<=20){
+                    iLeft = 0;
+                }
+                if(iTop<= 2){
+                    iTop = 0;
+                }
+                if( iLeft  >=document.documentElement.clientWidth - oDiv.offsetWidth ){
+                    iLeft = document.documentElement.clientWidth - oDiv.offsetWidth
+                }
+                if( iTop  >=document.documentElement.clientHeight - oDiv.offsetHeight ){
+                    iTop = document.documentElement.clientHeight - oDiv.offsetHeight
+                }
+                oDiv.style.left = iLeft + "px";
+                oDiv.style.top = iTop + "px";
             }
-        }
+            oDiv.onmouseup = function(){
+//                oDiv.onmousedown = null;
+                document.onmousemove = null;oDiv.onmouseup = null;  }
+}
     </script>
 </body>
 </html>
