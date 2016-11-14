@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration:none
+        }
+        #content{
+            position:relative;
+            width: 240px;
+            height: 320px;
+            background: #ff0000;
+            top:50px;
+            left:50px;
+        }
+        #content img{
+            width: 240px;
+            height: 320px;
+        }
+        #mov{
+            width: 120px;
+            height: 120px;
+            background: #53ffcc;
+            position:absolute;
+            left:0;
+            top:0;
+            opacity: 0.5;
+            display:none;
+        }
+        #big{
+            position: absolute;
+            left:290px;
+            top: 50px;
+            width: 240px;
+            height: 320px;
+            overflow: hidden;
+            display:none;
+        }
+        #big img{
+            position:absolute;
+        }
+        
+    </style>
+</head>
+<body>
+<div id="content">
+    <img src="img/8.jpg" alt=""/>
+    <div id="mov"></div>
+</div>
+<div id="big"><img id="pi" src="img/8.jpg" alt=""/></div>
+
+<script>
+    var oMov = document.getElementById("mov");
+    var oContent = document.getElementById("content");
+//    var oImg = oContent.getElementsByTagName("img");
+     var oBig = document.getElementById("big");
+//    var oNav = oBig.getElementsByTagName("img");
+    var oPi = document.getElementById("pi");
+    oContent.onmouseover = function(e){
+        e = e|| window.event;
+//        console.log(oImg.style.width)
+        oBig.style.display = "block";
+        oMov.style.display = "block";
+        var iDisX = e.clientX - oContent.offsetLeft;
+        var iDisY = e.clientY - oContent.offsetTop;
+        document.onmousemove = function(e){
+            e = e || window.event;
+            var iLeft =  e.clientX - iDisX;
+            var iTop = e.clientY - iDisY;
+            if(iLeft <= 0){
+                iLeft = 0;
+            }
+            if(iTop <= 0){
+                iTop = 0;
+            }
+            if(iLeft >=   oContent.offsetWidth - oMov.offsetWidth ){
+                iLeft =  oContent.offsetWidth - oMov.offsetWidth;
+            }
+            if(iTop >= oContent.offsetHeight - oMov.offsetHeight){
+                iTop = oContent.offsetHeight - oMov.offsetHeight;
+            }
+            oMov.style.left = iLeft + "px";
+            oMov.style.top = iTop + "px";
+            var biliX = (oContent.offsetWidth - oMov.offsetWidth) / (oBig.offsetWidth - oMov.offsetWidth );
+            var biliY = (oContent.offsetHeight - oMov.offsetHeight) / (oBig.offsetHeight - oMov.offsetHeight );
+            oPi.style.left = -biliX * iLeft + "px";
+            oPi.style.top = -biliY * iTop + "px";
+        }
+        document.onmouseout = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+            oBig.style.display = "none";
+            oMov.style.display = "none";
+        }
+//        oContent.onmouseout = function(){
+//            oBig.style.display = "none";
+//        }
+        return false;
+
+
+    }
+</script>
+</body>
+</html>
