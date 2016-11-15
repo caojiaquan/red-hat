@@ -53,10 +53,10 @@
 </head>
 <body>
 <div id="content">
-    <img src="img/8.jpg" alt=""/>
+    <img src="6.jpg" alt=""/>
     <div id="mov"></div>
 </div>
-<div id="big"><img id="pi" src="img/8.jpg" alt=""/></div>
+<div id="big"><img id="pi" src="6.jpg" alt=""/></div>
 
 <script>
     var oMov = document.getElementById("mov");
@@ -65,13 +65,13 @@
      var oBig = document.getElementById("big");
 //    var oNav = oBig.getElementsByTagName("img");
     var oPi = document.getElementById("pi");
-    oContent.onmouseover = function(e){
+    oContent.onmousedown = function(e){
         e = e|| window.event;
-//        console.log(oImg.style.width)
+        console.log(oContent.offsetLeft)
         oBig.style.display = "block";
         oMov.style.display = "block";
-        var iDisX = e.clientX - oContent.offsetLeft;
-        var iDisY = e.clientY - oContent.offsetTop;
+        var iDisX = e.clientX ;
+        var iDisY = e.clientY ;
         document.onmousemove = function(e){
             e = e || window.event;
             var iLeft =  e.clientX - iDisX;
@@ -95,15 +95,13 @@
             oPi.style.left = -biliX * iLeft + "px";
             oPi.style.top = -biliY * iTop + "px";
         }
-        document.onmouseout = function(){
+        document.onmouseup = function(){
             document.onmousemove = null;
             document.onmouseup = null;
             oBig.style.display = "none";
             oMov.style.display = "none";
         }
-//        oContent.onmouseout = function(){
-//            oBig.style.display = "none";
-//        }
+
         return false;
 
 
