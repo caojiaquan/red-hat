@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style:none;
+        }
+        a{
+            text-decoration:none;
+        }
+        #container{
+            width: 680px;
+            margin:50px auto;
+        }
+        #content li{
+            float:left;
+            width: 150px;
+            height: 80px;
+            background: #cccccc;
+            margin-right:10px;
+            text-align:center;
+            line-height:80px;
+            /*width:100%;*/
+            /*height:100%;*/
+            font-size:200%;
+        }
+        #content{
+            height: 80px;
+        }
+        #content .selected{
+            background: #000000;
+            color:white;
+        }
+        #box div{
+            display:none
+        }
+        #box .selected{
+            display:block;
+        }
+        #box{
+            background: #ff0000;
+            width: 680px;
+            height: 340px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="content">
+            <li class="selected">js</li>
+            <li>css</li>
+            <li>html</li>
+        </ul>
+        <div id="box">
+            <div class="selected">11111111</div>
+            <div>22222222</div>
+            <div>33333333</div>
+        </div>
+
+    </div>
+
+
+    <script>
+        (function(){
+//            var arr = [111111,22222222,333333333];
+            var oContent = document.getElementById("content");
+            var aLi = oContent.getElementsByTagName("li");
+            var oBox = document.getElementById("box");
+            var oDiv = oBox.getElementsByTagName("div");
+            for(var i=0; i<aLi.length; i++){
+                aLi[i].index = i;
+                aLi[i].onclick = function(){
+                  for(var i=0; i<aLi.length; i++){
+                      aLi[i].className = "";
+                      oDiv[i].className = "";
+                  }
+                    this.className = "selected";
+                    oDiv[this.index].className = "selected";
+//                    oBox.innerHTML = arr[this.index];
+                };
+            }
+
+        })();
+    </script>
+</body>
+</html>
