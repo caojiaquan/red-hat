@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        function getrun(year){
+            if(year%4 == 0 && year%100 != 0 || year%400 == 0){
+                return true;
+            }
+            return false;
+        }
+
+        var today = new Date();
+        var year = today.getFullYear();
+        if(getrun(year)){
+            document.write("今年是闰年");
+        }else{
+            document.write("今年不是闰年");
+        }
+    </script>
+</body>
+</html>
