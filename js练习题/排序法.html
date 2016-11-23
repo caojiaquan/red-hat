@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        /*
+        * 一个数组长度为100；前十个是乱序，后90个不用排；排序
+        * */
+
+        var aMath = [9,8,7,6,5,4,3,2,1,0];
+        function arr(){
+            var array = [];
+            for(var i=10; i<100;i++){
+                array.push(i);
+            }
+            return array;
+        }
+         var array = arr();
+        aNew = aMath.concat(array);
+        var p = getshunxu(aNew,10);
+        console.log(p);
+
+        function getshunxu(arr,n){
+            var array = [];
+            for(var i=0; i<n; i++){
+                array.push(arr[i]);
+            }
+            for(var i=0; i<n; i++){
+                for(var j=0; j<=n; j++){
+                    if(array[j] < array[j-1]){
+                        var t = array[j-1];
+                        array[j-1] = array[j];
+                        array[j] = t;
+                    }
+                }
+            }
+            var array2 = [];
+            for(var i=n; i<arr.length; i++){
+                array2.push(arr[i]);
+            }
+            return array.concat(array2);
+        }
+
+
+        function getshunxu2(arr,n){
+            var bFlag = n;
+            while(n>0){
+                var j = bFlag;
+                n = 0;
+                for(var i=0; i<=j; i++){
+                    if(arr[i]>arr[i+1]){
+                        var t = arr[i+1];
+                        arr[i+1] = arr[i];
+                        arr[i] = t;
+                        n = i;
+//                        console.log(n);
+                    }
+                }
+            }
+            return arr;
+        }
+        var t = getshunxu2(aNew,10);
+//        console.log(t);
+
+    </script>
+</body>
+</html>
